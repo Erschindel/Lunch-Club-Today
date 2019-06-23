@@ -16,6 +16,14 @@ class Timer extends React.Component{
 
   }
 
+  componentDidMount(){
+    this.interval = setInterval(this.getRemainingTime, 1000);
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.interval);
+  }
+
   getRemainingTime = () => {
     const today = new Date();
     const hooray = false,
@@ -40,7 +48,6 @@ class Timer extends React.Component{
 
   render(){
     //
-    setInterval(this.getRemainingTime, 1000);
     return(
       <div>
         <span>{this.state.hours} hours, {this.state.minutes} minutes, and {this.state.seconds} seconds until next out to lunch!</span>
