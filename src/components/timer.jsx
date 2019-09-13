@@ -6,15 +6,18 @@ class Timer extends React.Component{
 
     let current = new Date(),
       lunchDay = [3,12,38,42],
-      hour = (current.getHours() > lunchDay[1]) ? (24 + lunchDay[1] - current.getHours()) : (lunchDay[1] - current.getHours()),
-      day = (current.getDay() > lunchDay[0]) ? (7 + lunchDay[0] - current.getDay()) : (lunchDay[0] - current.getDay());
+      // setting minutes, hours, and days relative to adjusted seconds s
+
+      s = (current.getSeconds() > lunchDay[3]) ? (60 + lunchDay[3] - current.getSeconds()) : (lunchDay[3] - current.getSeconds()),
+      m = (s > lunchDay[3]) ? ((current.getMinutes() > lunchDay[2]) ? (60 + lunchDay[2] - current.getMinutes() - 1) : (lunchDay[2] - current.getMinutes()) - 1) : ((current.getMinutes() > lunchDay[2]) ? (60 + lunchDay[2] - current.getMinutes()) : (lunchDay[2] - current.getMinutes())),
+      h = (m > lunchDay[2]) ? ((current.getHours() > lunchDay[1]) ? (24 + lunchDay[1] - current.getHours() - 1) : (lunchDay[1] - current.getHours()) - 1) : ((current.getHours() > lunchDay[1]) ? (24 + lunchDay[1] - current.getHours()) : (lunchDay[1] - current.getHours())),
+      d = (h > lunchDay[1]) ? ((current.getDay() > lunchDay[0]) ? (7 + lunchDay[0] - current.getDay() - 1) : (lunchDay[0] - current.getDay()) - 1) : ((current.getDay() > lunchDay[0]) ? (7 + lunchDay[0] - current.getDay()) : (lunchDay[0] - current.getDay()));
 
     this.state = {
-      // set days remaining to reflect days abuot
-      days: ((current.getHours() > lunchDay[1] && current.getMinutes() > lunchDay[2] && current.getSeconds() > lunchDay[3]) ? (day) : (day + 1)),
-      hours: (current.getDay() !== lunchDay[0]) ? ((current.getDay() > lunchDay[0]) ? (hour + (24 * (7 + lunchDay[0] - current.getDay()))) : (hour + (24 * (lunchDay[0] - current.getDay())))) : hour,
-      minutes: (current.getMinutes() > lunchDay[2]) ? (60 + lunchDay[2] - current.getMinutes()) : (lunchDay[2] - current.getMinutes()),
-      seconds: (current.getSeconds() > lunchDay[3]) ? (60 + lunchDay[3] - current.getSeconds()) : (lunchDay[3] - current.getSeconds())
+      days: d,
+      hours: h,
+      minutes: m,
+      seconds: s
     }
 
   }
@@ -35,11 +38,10 @@ class Timer extends React.Component{
       //set minutes to decrement with respect to seconds, if minutes is > 0
       mins = (this.state.minutes !== -1) ? ((secs === 59) ? (this.state.minutes - 1) : (this.state.minutes)) : (59),
       //set hours to decrement with respect to minutes, if hours is > 0
-      hours = (this.state.hours !== -1) ? ((mins === 59) ? (this.state.hours - 1) : (this.state.hours)) : (24),
-      day = this.state.days;
+      hours = (this.state.hours !== -1) ? ((mins === 59 && secs === 58) ? (this.state.hours - 1) : (this.state.hours)) : (23),
+      day = (this.state.days !== -1) ? ((hours === 23 && mins === 59 && secs === 57) ? (this.state.days - 1) : (this.state.days)) : (6);
 
-    //set hours to reflect days remaining
-    // hours += ();
+
     (day === lunchDay[0] && hours < 13) ? hooray = true : hooray = false;
 
 
@@ -55,7 +57,7 @@ class Timer extends React.Component{
     //
     return(
       <div>
-        <span>{this.state.hours} hours, {this.state.minutes} minutes, and {this.state.seconds} seconds until next out to lunch!</span>
+        <span>{this.state.days} days, {this.state.hours} hours, {this.state.minutes} minutes, and {this.state.seconds} seconds until next out to lunch!</span>
       </div>
     )
   }
