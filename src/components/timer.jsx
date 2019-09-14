@@ -8,7 +8,7 @@ class Timer extends React.Component{
       lunchDay = [3,12,38,42],
       // setting minutes, hours, and days relative to adjusted seconds s
 
-      s = (current.getSeconds() > lunchDay[3]) ? (60 + lunchDay[3] - current.getSeconds()) : (lunchDay[3] - current.getSeconds()),
+      s = (current.getSeconds() > lunchDay[3]) ? (59 + lunchDay[3] - current.getSeconds()) : (lunchDay[3] - current.getSeconds()),
       m = (s > lunchDay[3]) ? ((current.getMinutes() > lunchDay[2]) ? (60 + lunchDay[2] - current.getMinutes() - 1) : (lunchDay[2] - current.getMinutes()) - 1) : ((current.getMinutes() > lunchDay[2]) ? (60 + lunchDay[2] - current.getMinutes()) : (lunchDay[2] - current.getMinutes())),
       h = (m > lunchDay[2]) ? ((current.getHours() > lunchDay[1]) ? (24 + lunchDay[1] - current.getHours() - 1) : (lunchDay[1] - current.getHours()) - 1) : ((current.getHours() > lunchDay[1]) ? (24 + lunchDay[1] - current.getHours()) : (lunchDay[1] - current.getHours())),
       d = (h > lunchDay[1]) ? ((current.getDay() > lunchDay[0]) ? (7 + lunchDay[0] - current.getDay() - 1) : (lunchDay[0] - current.getDay()) - 1) : ((current.getDay() > lunchDay[0]) ? (7 + lunchDay[0] - current.getDay()) : (lunchDay[0] - current.getDay()));
