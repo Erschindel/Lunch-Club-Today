@@ -1,0 +1,28 @@
+body{
+  margin: 5px;
+  background-color: #eee;
+}
+
+.map-sizing{
+  height: 50%;
+}
+
+.timerDaysOn{
+  color: red;
+  font-size: 24px;
+}
+
+.timerHoursOn{
+  color: orange;
+  font-size: 36px;
+}
+
+.timerMinutesOn{
+  color: green;
+  font-size: 48px;
+}
+
+.timerSecondsOn{
+  color: blue;
+  font-size: 60px;
+}
