@@ -61,3 +61,13 @@ class Maps extends React.Component{
 export default GoogleApiWrapper({
   apiKey: ("AIzaSyCceXdLpZ5b6QkArMR73G59M9muGJgSQdg")
 })(Maps)
+
+Maps.defaultProps = {
+  zoom: 14,
+  initialCenter: {
+    lat: -1.2884,
+    lng: 36.8233
+  },
+  centerAroundCurrentLocation: false,
+  visible: true
+};
