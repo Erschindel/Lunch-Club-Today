@@ -1,10 +1,27 @@
 body{
+  display:flex;
+  vertical-align: center;
+}
+
+.form-styles{
+  margin: 0 auto;
+
+}
+
+input{
+  max-width: 325px;
+  height: 30px;
   margin: 5px;
-  background-color: #eee;
+}
+
+input:hover{
+  transition: .25s;
+  opacity: .75;
 }
 
 .map-sizing{
-  height: 50%;
+  max-width: 50%;
+  max-height: 50%;
 }
 
 .timerDaysOn{

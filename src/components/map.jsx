@@ -29,10 +29,14 @@ class Maps extends React.Component{
   render(){
     //
     return(
-      <div>
-          <form onSubmit={this.handleSubmit}>
-            <input type="text" onChange={this.handleChange} value={this.state.value} placeholder="Enter location (i.e \'Chipotle\', \'&pizza\', etc.)"/>
-            <button type="submit">Find</button>
+      <div className="justify-content-center">
+          <form onSubmit={this.handleSubmit} className="form-styles">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" onChange={this.handleChange} value={this.state.value} placeholder="Enter location (i.e Chipotle, &pizza, etc.)"/>
+              <div class="input-group-append">
+                <button type="button" class="btn btn-outline-secondary">Find</button>
+              </div>
+            </div>
           </form>
           <h1>{this.state.submit}</h1>
           <div>
