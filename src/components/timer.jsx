@@ -99,17 +99,12 @@ class Timer extends React.Component{
 
   getRemainingTime = () => {
     const today = new Date();
-    let hooray = false,
-      lunchDay = [3,12,38,42],
+    let lunchDay = [3,12,38,42],
       secs = (today.getSeconds() > lunchDay[3]) ? (60 + lunchDay[3] - today.getSeconds()) : (lunchDay[3] - today.getSeconds()),
       //set minutes to decrement with respect to seconds, if minutes is > 0; otherwise, reset minutes and decrement hours
       mins = (this.state.minutes !== -1) ? ((secs === 59) ? (this.state.minutes - 1) : (this.state.minutes)) : (59),
       hours = (this.state.hours !== -1) ? ((mins === 59 && secs === 58) ? (this.state.hours - 1) : (this.state.hours)) : (23),
       day = (this.state.days !== -1) ? ((hours === 23 && mins === 59 && secs === 57) ? (this.state.days - 1) : (this.state.days)) : (6);
-
-
-    (day === lunchDay[0] && hours < 13) ? hooray = true : hooray = false;
-
 
     this.setState({
       days: day,
