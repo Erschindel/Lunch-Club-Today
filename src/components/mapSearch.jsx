@@ -1,5 +1,6 @@
 import React from "react";
 import "../App.css";
+import MapWrapper from "./mapWrapper";
 
 class Search extends React.Component{
   constructor(props){
@@ -7,7 +8,7 @@ class Search extends React.Component{
 
     this.state = {
       input: "",
-      submit: ""
+      submit: []
     }
   }
 
@@ -19,8 +20,8 @@ class Search extends React.Component{
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.setState({
-      submit: this.state.input
+    this.setState((oldState) => {
+      submit: oldState.submit.push(this.state.input)
     })
   };
 
@@ -35,7 +36,10 @@ class Search extends React.Component{
             </div>
           </div>
         </form>
-        <h1>{this.state.submit}</h1>
+        <h1>{this.state.input}</h1>
+        <MapWrapper
+          submit={this.state.submit}
+        />
       </div>
     )
   }

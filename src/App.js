@@ -1,15 +1,16 @@
 import React from 'react';
 import './App.css';
-import Timer from "./components/timer.jsx";
-import Maps from "./components/map.jsx";
+import Timer from "./components/timer";
+import Search from "./components/mapSearch";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Clock() {
   return (
-    <div className="Apple">
+    <div>
       <header className="App-header">
         < Timer />
-        < Maps />
+        < Search />
+
       </header>
     </div>
   );

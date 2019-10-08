@@ -1,10 +1,5 @@
-body{
-  display:flex;
-  vertical-align: center;
-}
-
-.form-styles{
-  margin: 0 auto;
+#main-app{
+  margin: auto 0;
 
 }
 
@@ -18,11 +13,6 @@ input{
 input:hover{
   transition: .25s;
   opacity: .75;
-}
-
-.map-sizing{
-  max-width: 50%;
-  max-height: 50%;
 }
 
 .timerDaysOn{

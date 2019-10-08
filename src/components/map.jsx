@@ -1,47 +1,30 @@
 import React from "react";
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import Search from "./mapSearch.jsx";
+import { withScriptjs, withGoogleMap, Marker, InfoWindow, GoogleMap } from "react-google-maps";
+import Search from "./mapSearch";
 import "../App.css";
 
-class Maps extends React.Component{
+const Maps = withScriptjs(withGoogleMap((props) =>{
 
-  constructor(props){
-    super(props);
+  const home = {
+    lat: 39.1887131,
+    lng: -77.2627294
   }
 
-  fetchPlaces(mapProps, map){
-    const {google} = mapProps;
-    const service = new google.maps.places.PlacesService(map);
-  }
+  return(
 
-  render(){
-    //
-    return(
-      <div className="justify-content-center">
-        < Search
-          search={this.props.search}
+      <GoogleMap
+        defaultZoom={13}
+        defaultCenter={home}
+        className={"map-sizing"}
           >
-        </ Search >
-        <Map
-          google={this.props.google}
-          zoom={13}
-          initialCenter={{
-            lat: 39.1887131,
-            lng: -77.2627294
-          }}
-          onReady={this.fetchPlaces}
-          className={"map-sizing"}
-            >
-          <Marker onClick={this.onMarkerClick}
-              name={'Current location'} />
-          <InfoWindow onClose={this.onInfoWindowClose}>
-            </InfoWindow>
-        </Map>
-      </div>
-    )
-  }
-}
+        <Marker
+          position={home}
+        />
 
-export default GoogleApiWrapper({
-  apiKey: ("AIzaSyCceXdLpZ5b6QkArMR73G59M9muGJgSQdg")
-})(Maps)
+
+      </GoogleMap>
+
+  )
+}))
+
+export default Maps;
